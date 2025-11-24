@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BWR Wiki</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>BWR Википедия</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="wiki.css">
 </head>
 <body>
@@ -18,14 +18,13 @@
         </div>
         
         <div class="nav-right">
-            <button class="create-btn" onclick="openModal('wikiModal')">+ New Article</button>
+            <button class="create-btn" onclick="openModal('wikiModal')">+ Создать статью</button>
         </div>
 
         <div id="dropdownMenu" class="dropdown-menu">
-            <a href="#" class="active">Wiki Home</a>
-            <a href="marketplace.html">Marketplace</a>
-            <a href="marketplace.html#jobs">Jobs</a>
-            <a href="https://t.me/frtzhvk">Support</a>
+            <div class="menu-header">Навигация</div>
+            <a href="#" class="active" onclick="showLanding(); toggleMenu()">Главная Вики</a>
+            <a href="https://t.me/frtzhvk">Связь с Админом</a>
         </div>
     </nav>
 
@@ -33,12 +32,12 @@
         
         <div id="landingView" class="view-section active">
             <div class="hero-section">
-                <div class="hero-badge">OFFICIAL DATABASE</div>
+                <div class="hero-badge">БАЗА ЗНАНИЙ</div>
                 <h1 class="hero-title">Bobertovo Web Resources</h1>
-                <p class="hero-subtitle">The collaborative encyclopedia for the BWR network.</p>
+                <p class="hero-subtitle">Централизованный архив информации и документации сети Bobertovo.</p>
                 
                 <div class="search-wrapper">
-                    <input type="text" id="wikiSearch" placeholder="Find an article...">
+                    <input type="text" id="wikiSearch" placeholder="Поиск по статьям...">
                     <div class="search-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
                     </div>
@@ -47,17 +46,17 @@
 
             <div class="content-wrapper">
                 <div class="section-header">
-                    <h3>Recent Entries</h3>
+                    <h3>Последние записи</h3>
                     <div class="line"></div>
                 </div>
                 <div id="wiki-feed" class="wiki-grid">
-                    <div class="loading">Connecting to database...</div>
+                    <div class="loading">Загрузка базы данных...</div>
                 </div>
             </div>
         </div>
 
         <div id="articleView" class="view-section">
-            <button class="back-btn" onclick="showLanding()">← Back to Search</button>
+            <button class="back-btn" onclick="handleBackClick()">← Вернуться к поиску</button>
             <div id="articleContent" class="paper-sheet">
                 </div>
         </div>
@@ -67,74 +66,74 @@
     <div id="wikiModal" class="modal" onclick="closeModalOnOutside(event, 'wikiModal')">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Create Entry</h2>
+                <h2>Новая запись</h2>
                 <button class="close-btn" onclick="closeModal('wikiModal')">&times;</button>
             </div>
             
             <form id="wikiForm">
                 <div class="form-row">
                     <div class="form-group half">
-                        <label>Title <span class="req">*</span></label>
-                        <input type="text" id="wiki-title" required placeholder="Article Name">
+                        <label>Заголовок <span class="req">*</span></label>
+                        <input type="text" id="wiki-title" required placeholder="Название статьи">
                     </div>
                     <div class="form-group half">
-                        <label>Subtitle</label>
-                        <input type="text" id="wiki-subtitle" placeholder="Short context">
+                        <label>Подзаголовок</label>
+                        <input type="text" id="wiki-subtitle" placeholder="Краткий контекст (опционально)">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Summary (for search) <span class="req">*</span></label>
-                    <input type="text" id="wiki-desc" required placeholder="Brief description">
+                    <label>Краткое описание (Для поиска) <span class="req">*</span></label>
+                    <input type="text" id="wiki-desc" required placeholder="О чем эта статья?">
                 </div>
 
                 <div class="form-row">
                     <div class="form-group half">
-                        <label>Logo URL</label>
+                        <label>URL Логотипа</label>
                         <input type="url" id="wiki-logo" placeholder="https://...">
                     </div>
                     <div class="form-group half">
-                        <label>Tags (comma separated)</label>
-                        <input type="text" id="wiki-tags" placeholder="Economy, History, Guide">
+                        <label>Теги (через запятую)</label>
+                        <input type="text" id="wiki-tags" placeholder="Экономика, История, Гайд">
                     </div>
                 </div>
 
                 <hr class="form-divider">
 
                 <div class="dynamic-area">
-                    <label>Article Content</label>
+                    <label>Содержание статьи</label>
                     <div id="content-container">
-                        <textarea class="content-input" required placeholder="Write your first chapter here..."></textarea>
+                        <textarea class="content-input" required placeholder="Напишите первую главу здесь..."></textarea>
                     </div>
-                    <button type="button" class="add-more-btn" onclick="addContentField()">+ Add Chapter</button>
+                    <button type="button" class="add-more-btn" onclick="addContentField()">+ Добавить главу</button>
                 </div>
 
                 <div class="dynamic-area">
-                    <label>Gallery Images</label>
+                    <label>Галерея изображений</label>
                     <div id="gallery-container">
-                        <input type="url" class="gallery-input" placeholder="Image URL (https://...)">
+                        <input type="url" class="gallery-input" placeholder="Ссылка на фото (https://...)">
                     </div>
-                    <button type="button" class="add-more-btn" onclick="addGalleryField()">+ Add Image URL</button>
+                    <button type="button" class="add-more-btn" onclick="addGalleryField()">+ Добавить фото</button>
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="submit-btn">Publish to Wiki</button>
+                    <button type="submit" class="submit-btn">Опубликовать в Вики</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        const GITHUB_USERNAME = 'Forretpw';
-        const GITHUB_REPO = 'BWR'; 
+        const GITHUB_USERNAME = 'foretpzs';
+        const GITHUB_REPO = 'Bobbank'; 
         let allArticles = [];
 
-        // --- DYNAMIC FORM LOGIC ---
+        // --- ЛОГИКА ДИНАМИЧЕСКИХ ПОЛЕЙ ---
         function addContentField() {
             const container = document.getElementById('content-container');
             const area = document.createElement('textarea');
             area.className = 'content-input';
-            area.placeholder = 'Write next chapter...';
+            area.placeholder = 'Следующая глава...';
             area.style.marginTop = '10px';
             container.appendChild(area);
         }
@@ -144,37 +143,75 @@
             const input = document.createElement('input');
             input.type = 'url';
             input.className = 'gallery-input';
-            input.placeholder = 'Another Image URL...';
+            input.placeholder = 'Ссылка на изображение...';
             input.style.marginTop = '8px';
             container.appendChild(input);
         }
 
-        // --- APP LOGIC ---
+        // --- ЛОГИКА ИНТЕРФЕЙСА ---
         function toggleMenu() { document.getElementById('dropdownMenu').classList.toggle('show'); }
         function openModal(id) { document.getElementById(id).classList.add('active'); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
         function closeModalOnOutside(e, id) { if(e.target.id === id) closeModal(id); }
         
+        function handleBackClick() {
+            // Очищаем хеш URL, что вызовет событие onhashchange
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+            showLanding();
+        }
+
         function showLanding() {
             document.getElementById('articleView').classList.remove('active');
             document.getElementById('landingView').classList.add('active');
             window.scrollTo(0,0);
         }
 
+        // --- ОСНОВНАЯ ЛОГИКА ЗАГРУЗКИ ---
         async function loadWiki() {
             const container = document.getElementById('wiki-feed');
             try {
                 const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/issues?labels=BWR-WIKI&state=open`);
                 allArticles = await response.json();
+                
                 if (allArticles.length === 0) {
-                    container.innerHTML = '<div class="loading">Database empty.</div>';
+                    container.innerHTML = '<div class="loading">База данных пуста.</div>';
                     return;
                 }
+                
                 renderList(allArticles);
+                
+                // Проверяем ссылку после загрузки данных
+                checkHash();
+
             } catch (error) {
-                container.innerHTML = '<div class="loading">Connection Error.</div>';
+                container.innerHTML = '<div class="loading">Ошибка подключения к серверу.</div>';
+                console.error(error);
             }
         }
+
+        // --- ЛОГИКА URL (DEEP LINKING) ---
+        function checkHash() {
+            const hash = window.location.hash.substring(1); // Убираем #
+            if (hash) {
+                // Декодируем (History%20 -> History)
+                const decodedTitle = decodeURIComponent(hash).toLowerCase();
+                
+                // Ищем статью по заголовку
+                const article = allArticles.find(a => {
+                    const title = (a.body.match(/\*\*Title:\*\* (.*)/)?.[1] || a.title).toLowerCase();
+                    return title === decodedTitle;
+                });
+
+                if (article) {
+                    openArticle(article.number, false); // false = не обновлять хеш снова
+                }
+            } else {
+                showLanding();
+            }
+        }
+
+        // Слушаем кнопки Назад/Вперед в браузере
+        window.addEventListener('hashchange', checkHash);
 
         function renderList(articles) {
             document.getElementById('wiki-feed').innerHTML = articles.map(issue => {
@@ -185,7 +222,7 @@
                 const tags = (body.match(/\*\*Tags:\*\* (.*)/)?.[1] || '').split(',').filter(t=>t.trim());
 
                 return `
-                    <div class="wiki-card" onclick="openArticle(${issue.number})">
+                    <div class="wiki-card" onclick="setHashAndOpen('${title.replace(/'/g, "\\'")}', ${issue.number})">
                         <div class="card-accent"></div>
                         ${logo ? `<img src="${logo}" class="card-img" onerror="this.style.display='none'">` : ''}
                         <div class="card-info">
@@ -200,29 +237,38 @@
             }).join('');
         }
 
-        function openArticle(id) {
+        function setHashAndOpen(title, id) {
+            // Устанавливаем хеш в URL (например #History)
+            window.location.hash = title; 
+            // openArticle вызовется автоматически через событие hashchange, 
+            // но для скорости можно вызвать напрямую, если hashchange тормозит
+        }
+
+        function openArticle(id, updateUrl = true) {
             const issue = allArticles.find(i => i.number === id);
             if(!issue) return;
+            
             const body = issue.body;
-
             const title = body.match(/\*\*Title:\*\* (.*)/)?.[1] || issue.title;
             const subtitle = body.match(/\*\*Subtitle:\*\* (.*)/)?.[1] || '';
             const logo = body.match(/\*\*Logo:\*\* (.*)/)?.[1];
             
-            // Extract Content (Combined)
+            // Получаем контент
             const contentRaw = body.match(/\*\*Content:\*\*([\s\S]*?)(?=\*\*Gallery:|$)/)?.[1] || '';
-            // Split by separator used during submission
             const paragraphs = contentRaw.split('||SECTION||').filter(p => p.trim());
 
-            // Extract Gallery
+            // Получаем галерею
             const galleryRaw = body.match(/\*\*Gallery:\*\* (.*)/)?.[1] || '';
             const images = galleryRaw.split(',').filter(u => u.trim().length > 5);
+
+            // Если вызвана напрямую без смены URL, меняем URL
+            if(updateUrl) window.location.hash = title;
 
             const html = `
                 <div class="paper-header">
                     <h1>${title}</h1>
                     ${subtitle ? `<h2>${subtitle}</h2>` : ''}
-                    <div class="meta">Entry #${issue.number} • ${new Date(issue.created_at).toLocaleDateString()}</div>
+                    <div class="meta">Запись #${issue.number} • ${new Date(issue.created_at).toLocaleDateString('ru-RU')}</div>
                 </div>
                 
                 <div class="paper-body-grid">
@@ -234,7 +280,7 @@
 
                 ${images.length > 0 ? `
                     <div class="gallery-block">
-                        <h3>Media Library</h3>
+                        <h3>Медиатека</h3>
                         <div class="gallery-grid">
                             ${images.map(src => `<img src="${src.trim()}" onclick="window.open(this.src)">`).join('')}
                         </div>
@@ -248,27 +294,23 @@
             window.scrollTo(0,0);
         }
 
-        // --- SUBMISSION LOGIC ---
+        // --- ЛОГИКА ОТПРАВКИ ---
         document.getElementById('wikiForm').addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // 1. Gather static fields
             const title = document.getElementById('wiki-title').value;
             const subtitle = document.getElementById('wiki-subtitle').value;
             const desc = document.getElementById('wiki-desc').value;
             const logo = document.getElementById('wiki-logo').value;
             const tags = document.getElementById('wiki-tags').value;
 
-            // 2. Gather dynamic CONTENT sections
             const contentInputs = document.querySelectorAll('.content-input');
             const contentParts = Array.from(contentInputs).map(el => el.value).filter(v => v.trim());
-            const combinedContent = contentParts.join('\n\n||SECTION||\n\n'); // Use a unique separator
+            const combinedContent = contentParts.join('\n\n||SECTION||\n\n');
 
-            // 3. Gather dynamic GALLERY inputs
             const galleryInputs = document.querySelectorAll('.gallery-input');
             const galleryUrls = Array.from(galleryInputs).map(el => el.value).filter(v => v.trim()).join(', ');
 
-            // 4. Construct Body
             const issueBody = `
 **Title:** ${title}
 **Subtitle:** ${subtitle}
@@ -283,6 +325,17 @@ ${combinedContent}
             const url = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(issueBody)}&labels=BWR-WIKI`;
             window.open(url, '_blank');
             closeModal('wikiModal');
+        });
+
+        // Поиск
+        document.getElementById('wikiSearch').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = allArticles.filter(a => {
+                const title = (a.body.match(/\*\*Title:\*\* (.*)/)?.[1] || a.title).toLowerCase();
+                const tags = (a.body.match(/\*\*Tags:\*\* (.*)/)?.[1] || '').toLowerCase();
+                return title.includes(val) || tags.includes(val);
+            });
+            renderList(filtered);
         });
 
         loadWiki();
