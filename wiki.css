@@ -5,11 +5,11 @@
     --text-muted: #6b7280;
     
     /* Акцентные цвета - более насыщенные */
-    --accent-blue: #3b82f6; /* Яркий синий */
-    --accent-pink: #ec4899; /* Яркий розовый */
+    --accent-blue: #001B46; /* Яркий синий */
+    --accent-pink: #F187B7; /* Яркий розовый */
     --border-line: #e2e4e8;
     
-    --radius-sharp: 3px; /* Острые углы */
+    --radius-sharp: 2px; /* Острые углы */
     --font-ui: 'Inter', sans-serif;
 }
 
@@ -25,7 +25,7 @@ body {
 /* NAVIGATION */
 .wiki-nav {
     background: #ffffff;
-    border-bottom: 2px solid var(--accent-blue); /* Синий низ хедера */
+    border-bottom: 2px solid var(--accent-blue);
     padding: 12px 24px;
     display: flex;
     justify-content: space-between;
