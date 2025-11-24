@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BWR - The Free Encyclopedia</title>
+    <title>BWR Wiki</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="wiki.css">
 </head>
 <body>
@@ -11,55 +12,53 @@
     <nav class="wiki-nav">
         <div class="nav-left">
             <button class="menu-btn" onclick="toggleMenu()">
-                <div class="hamburger"></div>
-                <div class="hamburger"></div>
-                <div class="hamburger"></div>
+                <span></span><span></span><span></span>
             </button>
-            <span class="nav-brand">BWR Wiki</span>
+            <span class="nav-brand">BWR <span class="brand-highlight">WIKI</span></span>
         </div>
         
         <div class="nav-right">
-            <button class="create-article-btn" onclick="openModal('wikiModal')">+ Create Article</button>
+            <button class="create-btn" onclick="openModal('wikiModal')">+ New Article</button>
         </div>
 
         <div id="dropdownMenu" class="dropdown-menu">
             <a href="#" class="active">Wiki Home</a>
-            <a href="marketplace.html">BWR Marketplace</a>
-            <a href="marketplace.html#jobs">BWR Jobs</a>
-            <a href="https://t.me/frtzhvk">Contact Admin</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="marketplace.html#jobs">Jobs</a>
+            <a href="https://t.me/frtzhvk">Support</a>
         </div>
     </nav>
 
     <div class="main-container">
         
         <div id="landingView" class="view-section active">
-            <div class="hero-center">
-                <h1 class="hero-title">BWR</h1>
-                <h2 class="hero-subtitle">Bobertovo Web Resources</h2>
-                <p class="hero-welcome">Welcome to the free encyclopedia of the BWR Network.</p>
+            <div class="hero-section">
+                <div class="hero-badge">OFFICIAL DATABASE</div>
+                <h1 class="hero-title">Bobertovo Web Resources</h1>
+                <p class="hero-subtitle">The collaborative encyclopedia for the BWR network.</p>
                 
-                <div class="search-box">
-                    <input type="text" id="wikiSearch" placeholder="Search BWR...">
-                    <button class="search-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.35-4.35"></path>
-                        </svg>
-                    </button>
+                <div class="search-wrapper">
+                    <input type="text" id="wikiSearch" placeholder="Find an article...">
+                    <div class="search-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+                    </div>
                 </div>
             </div>
 
-            <div class="articles-list-container">
-                <h3 class="section-header">Featured Articles</h3>
+            <div class="content-wrapper">
+                <div class="section-header">
+                    <h3>Recent Entries</h3>
+                    <div class="line"></div>
+                </div>
                 <div id="wiki-feed" class="wiki-grid">
-                    <div class="loading">Loading Encyclopedia...</div>
+                    <div class="loading">Connecting to database...</div>
                 </div>
             </div>
         </div>
 
         <div id="articleView" class="view-section">
-            <button class="back-link" onclick="showLanding()">← Back to Search</button>
-            <div id="articleContent" class="article-paper">
+            <button class="back-btn" onclick="showLanding()">← Back to Search</button>
+            <div id="articleContent" class="paper-sheet">
                 </div>
         </div>
 
@@ -68,134 +67,132 @@
     <div id="wikiModal" class="modal" onclick="closeModalOnOutside(event, 'wikiModal')">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Write an Article</h2>
+                <h2>Create Entry</h2>
                 <button class="close-btn" onclick="closeModal('wikiModal')">&times;</button>
             </div>
+            
             <form id="wikiForm">
-                <div class="form-group">
-                    <label>Article Title <span class="required">*</span></label>
-                    <input type="text" id="wiki-title" required placeholder="e.g. History of BWR">
-                </div>
-
-                <div class="form-group">
-                    <label>Subtitle</label>
-                    <input type="text" id="wiki-subtitle" placeholder="A brief context header">
-                </div>
-
-                <div class="form-group">
-                    <label>Short Description (for search results) <span class="required">*</span></label>
-                    <input type="text" id="wiki-desc" required placeholder="Summary of the page">
-                </div>
-
-                <div class="form-group">
-                    <label>Logo URL (Optional)</label>
-                    <input type="url" id="wiki-logo" placeholder="https://...">
-                </div>
-
-                <div class="form-group">
-                    <label>Tags (Max 3, 2-10 chars each)</label>
-                    <div class="tags-input-container">
-                        <input type="text" id="tag1" minlength="2" maxlength="10" placeholder="Tag 1">
-                        <input type="text" id="tag2" minlength="2" maxlength="10" placeholder="Tag 2">
-                        <input type="text" id="tag3" minlength="2" maxlength="10" placeholder="Tag 3">
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>Title <span class="req">*</span></label>
+                        <input type="text" id="wiki-title" required placeholder="Article Name">
+                    </div>
+                    <div class="form-group half">
+                        <label>Subtitle</label>
+                        <input type="text" id="wiki-subtitle" placeholder="Short context">
                     </div>
                 </div>
 
-                <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
-
                 <div class="form-group">
-                    <label>Main Article Content <span class="required">*</span></label>
-                    <textarea id="wiki-body" required style="height: 150px;" placeholder="Write your article text here..."></textarea>
+                    <label>Summary (for search) <span class="req">*</span></label>
+                    <input type="text" id="wiki-desc" required placeholder="Brief description">
                 </div>
 
-                <div class="form-group">
-                    <label>Inline Image 1 (URL)</label>
-                    <input type="url" id="img-inline-1" placeholder="Image to appear in text">
-                </div>
-                
-                <div class="form-group">
-                    <label>Second Chapter / More Text</label>
-                    <textarea id="wiki-body-2" style="height: 100px;" placeholder="Additional text after the first image..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Gallery Images (Bottom of page, up to 10 URLs, comma separated)</label>
-                    <input type="text" id="wiki-gallery" placeholder="url1, url2, url3...">
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>Logo URL</label>
+                        <input type="url" id="wiki-logo" placeholder="https://...">
+                    </div>
+                    <div class="form-group half">
+                        <label>Tags (comma separated)</label>
+                        <input type="text" id="wiki-tags" placeholder="Economy, History, Guide">
+                    </div>
                 </div>
 
-                <button type="submit" class="submit-btn">Publish Page</button>
+                <hr class="form-divider">
+
+                <div class="dynamic-area">
+                    <label>Article Content</label>
+                    <div id="content-container">
+                        <textarea class="content-input" required placeholder="Write your first chapter here..."></textarea>
+                    </div>
+                    <button type="button" class="add-more-btn" onclick="addContentField()">+ Add Chapter</button>
+                </div>
+
+                <div class="dynamic-area">
+                    <label>Gallery Images</label>
+                    <div id="gallery-container">
+                        <input type="url" class="gallery-input" placeholder="Image URL (https://...)">
+                    </div>
+                    <button type="button" class="add-more-btn" onclick="addGalleryField()">+ Add Image URL</button>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Publish to Wiki</button>
+                </div>
             </form>
         </div>
     </div>
 
     <script>
-        // CONFIGURATION
         const GITHUB_USERNAME = 'foretpzs';
         const GITHUB_REPO = 'Bobbank'; 
-
         let allArticles = [];
 
-        // UI Functions
-        function toggleMenu() {
-            document.getElementById('dropdownMenu').classList.toggle('show');
+        // --- DYNAMIC FORM LOGIC ---
+        function addContentField() {
+            const container = document.getElementById('content-container');
+            const area = document.createElement('textarea');
+            area.className = 'content-input';
+            area.placeholder = 'Write next chapter...';
+            area.style.marginTop = '10px';
+            container.appendChild(area);
         }
 
-        function openModal(id) {
-            document.getElementById(id).classList.add('active');
+        function addGalleryField() {
+            const container = document.getElementById('gallery-container');
+            const input = document.createElement('input');
+            input.type = 'url';
+            input.className = 'gallery-input';
+            input.placeholder = 'Another Image URL...';
+            input.style.marginTop = '8px';
+            container.appendChild(input);
         }
 
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
-        }
-
-        function closeModalOnOutside(e, id) {
-            if (e.target.id === id) closeModal(id);
-        }
-
+        // --- APP LOGIC ---
+        function toggleMenu() { document.getElementById('dropdownMenu').classList.toggle('show'); }
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        function closeModalOnOutside(e, id) { if(e.target.id === id) closeModal(id); }
+        
         function showLanding() {
             document.getElementById('articleView').classList.remove('active');
             document.getElementById('landingView').classList.add('active');
             window.scrollTo(0,0);
         }
 
-        // Logic
         async function loadWiki() {
             const container = document.getElementById('wiki-feed');
             try {
-                // Fetch issues labelled BWR-WIKI
                 const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/issues?labels=BWR-WIKI&state=open`);
                 allArticles = await response.json();
-
                 if (allArticles.length === 0) {
-                    container.innerHTML = '<div class="loading">No articles found. Be the first to write one!</div>';
+                    container.innerHTML = '<div class="loading">Database empty.</div>';
                     return;
                 }
                 renderList(allArticles);
             } catch (error) {
-                container.innerHTML = '<div class="loading">Error loading the encyclopedia.</div>';
-                console.error(error);
+                container.innerHTML = '<div class="loading">Connection Error.</div>';
             }
         }
 
         function renderList(articles) {
-            const container = document.getElementById('wiki-feed');
-            container.innerHTML = articles.map(issue => {
+            document.getElementById('wiki-feed').innerHTML = articles.map(issue => {
                 const body = issue.body;
-                // Parse "Front Matter"
                 const title = body.match(/\*\*Title:\*\* (.*)/)?.[1] || issue.title;
-                const desc = body.match(/\*\*Description:\*\* (.*)/)?.[1] || 'No description available.';
+                const desc = body.match(/\*\*Description:\*\* (.*)/)?.[1] || '';
                 const logo = body.match(/\*\*Logo:\*\* (.*)/)?.[1];
-                const tagsRaw = body.match(/\*\*Tags:\*\* (.*)/)?.[1] || '';
-                const tags = tagsRaw.split(',').filter(t => t.trim().length > 0);
+                const tags = (body.match(/\*\*Tags:\*\* (.*)/)?.[1] || '').split(',').filter(t=>t.trim());
 
                 return `
                     <div class="wiki-card" onclick="openArticle(${issue.number})">
-                        ${logo ? `<img src="${logo}" class="card-logo" onerror="this.style.display='none'">` : ''}
-                        <div class="card-content">
-                            <h3 class="card-title">${title}</h3>
-                            <p class="card-desc">${desc}</p>
-                            <div class="card-tags">
-                                ${tags.map(t => `<span class="tag">${t.trim()}</span>`).join('')}
+                        <div class="card-accent"></div>
+                        ${logo ? `<img src="${logo}" class="card-img" onerror="this.style.display='none'">` : ''}
+                        <div class="card-info">
+                            <h3>${title}</h3>
+                            <p>${desc}</p>
+                            <div class="tags">
+                                ${tags.map(t => `<span>${t.trim()}</span>`).join('')}
                             </div>
                         </div>
                     </div>
@@ -203,49 +200,43 @@
             }).join('');
         }
 
-        function openArticle(issueNumber) {
-            const issue = allArticles.find(i => i.number === issueNumber);
-            if (!issue) return;
-
+        function openArticle(id) {
+            const issue = allArticles.find(i => i.number === id);
+            if(!issue) return;
             const body = issue.body;
-            
-            // Extract Data
+
             const title = body.match(/\*\*Title:\*\* (.*)/)?.[1] || issue.title;
             const subtitle = body.match(/\*\*Subtitle:\*\* (.*)/)?.[1] || '';
             const logo = body.match(/\*\*Logo:\*\* (.*)/)?.[1];
             
-            // Content Blocks
-            const text1 = body.match(/\*\*Content1:\*\*([\s\S]*?)(?=\*\*|$)/)?.[1]?.trim() || '';
-            const img1 = body.match(/\*\*InlineImg1:\*\* (.*)/)?.[1];
-            const text2 = body.match(/\*\*Content2:\*\*([\s\S]*?)(?=\*\*|$)/)?.[1]?.trim() || '';
-            
-            // Gallery
+            // Extract Content (Combined)
+            const contentRaw = body.match(/\*\*Content:\*\*([\s\S]*?)(?=\*\*Gallery:|$)/)?.[1] || '';
+            // Split by separator used during submission
+            const paragraphs = contentRaw.split('||SECTION||').filter(p => p.trim());
+
+            // Extract Gallery
             const galleryRaw = body.match(/\*\*Gallery:\*\* (.*)/)?.[1] || '';
-            const gallery = galleryRaw.split(',').filter(u => u.trim().length > 5); // Basic url check
+            const images = galleryRaw.split(',').filter(u => u.trim().length > 5);
 
             const html = `
-                <div class="article-header">
-                    <h1 class="article-h1">${title}</h1>
-                    ${subtitle ? `<h2 class="article-subtitle">${subtitle}</h2>` : ''}
-                    <div class="article-meta">Published by ${issue.user.login}</div>
+                <div class="paper-header">
+                    <h1>${title}</h1>
+                    ${subtitle ? `<h2>${subtitle}</h2>` : ''}
+                    <div class="meta">Entry #${issue.number} • ${new Date(issue.created_at).toLocaleDateString()}</div>
                 </div>
-                <hr class="article-divider">
                 
-                <div class="article-body">
-                    ${logo ? `<div class="article-infobox"><img src="${logo}"></div>` : ''}
-                    
-                    <p>${text1.replace(/\n/g, '<br>')}</p>
-                    
-                    ${img1 ? `<div class="article-figure"><img src="${img1}"></div>` : ''}
-                    
-                    ${text2 ? `<p>${text2.replace(/\n/g, '<br>')}</p>` : ''}
+                <div class="paper-body-grid">
+                    <div class="text-col">
+                        ${paragraphs.map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('')}
+                    </div>
+                    ${logo ? `<div class="side-col"><div class="infobox"><img src="${logo}"></div></div>` : ''}
                 </div>
 
-                ${gallery.length > 0 ? `
-                    <div class="gallery-section">
+                ${images.length > 0 ? `
+                    <div class="gallery-block">
                         <h3>Media Library</h3>
                         <div class="gallery-grid">
-                            ${gallery.map(url => `<img src="${url.trim()}" onclick="window.open(this.src)">`).join('')}
+                            ${images.map(src => `<img src="${src.trim()}" onclick="window.open(this.src)">`).join('')}
                         </div>
                     </div>
                 ` : ''}
@@ -257,50 +248,36 @@
             window.scrollTo(0,0);
         }
 
-        // Search
-        document.getElementById('wikiSearch').addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            const filtered = allArticles.filter(a => {
-                const title = a.body.match(/\*\*Title:\*\* (.*)/)?.[1] || a.title;
-                const tags = a.body.match(/\*\*Tags:\*\* (.*)/)?.[1] || '';
-                return title.toLowerCase().includes(val) || tags.toLowerCase().includes(val);
-            });
-            renderList(filtered);
-        });
-
-        // Submission
+        // --- SUBMISSION LOGIC ---
         document.getElementById('wikiForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
+            // 1. Gather static fields
             const title = document.getElementById('wiki-title').value;
             const subtitle = document.getElementById('wiki-subtitle').value;
             const desc = document.getElementById('wiki-desc').value;
             const logo = document.getElementById('wiki-logo').value;
-            
-            // Tags
-            const t1 = document.getElementById('tag1').value;
-            const t2 = document.getElementById('tag2').value;
-            const t3 = document.getElementById('tag3').value;
-            const tags = [t1, t2, t3].filter(t => t).join(', ');
+            const tags = document.getElementById('wiki-tags').value;
 
-            const body1 = document.getElementById('wiki-body').value;
-            const img1 = document.getElementById('img-inline-1').value;
-            const body2 = document.getElementById('wiki-body-2').value;
-            const gallery = document.getElementById('wiki-gallery').value;
+            // 2. Gather dynamic CONTENT sections
+            const contentInputs = document.querySelectorAll('.content-input');
+            const contentParts = Array.from(contentInputs).map(el => el.value).filter(v => v.trim());
+            const combinedContent = contentParts.join('\n\n||SECTION||\n\n'); // Use a unique separator
 
-            // Construct Issue Body for parsing
+            // 3. Gather dynamic GALLERY inputs
+            const galleryInputs = document.querySelectorAll('.gallery-input');
+            const galleryUrls = Array.from(galleryInputs).map(el => el.value).filter(v => v.trim()).join(', ');
+
+            // 4. Construct Body
             const issueBody = `
 **Title:** ${title}
 **Subtitle:** ${subtitle}
 **Description:** ${desc}
 **Logo:** ${logo}
 **Tags:** ${tags}
-**Content1:**
-${body1}
-**InlineImg1:** ${img1}
-**Content2:**
-${body2}
-**Gallery:** ${gallery}
+**Content:**
+${combinedContent}
+**Gallery:** ${galleryUrls}
             `.trim();
 
             const url = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(issueBody)}&labels=BWR-WIKI`;
@@ -308,7 +285,6 @@ ${body2}
             closeModal('wikiModal');
         });
 
-        // Init
         loadWiki();
     </script>
 </body>
