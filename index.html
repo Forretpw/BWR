@@ -3,243 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BWR Marketplace</title>
-    <link rel="stylesheet" href="style.css">
+    <title>BWR - Bobertovo Web Resources</title>
+    <link rel="stylesheet" href="wiki-style.css">
 </head>
 <body>
-    <div class="header">
-        <div class="header-left">
-            <h1>BWR Marketplace</h1>
-            <div class="tabs">
-                <button class="tab active" data-section="marketplace" title="Marketplace">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
-                </button>
-                <button class="tab" data-section="jobs" title="Jobs">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                </button>
-                <button class="tab" data-section="estate" title="BWR & Regus Centre">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21V12a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v9"></path>
-                    </svg>
-                </button>
-                <button class="tab" data-section="search" title="Search">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <button id="actionBtn" class="action-btn sell-btn" onclick="openModal('itemModal')">+</button>
-    </div>
-
-    <div class="container">
-        <div id="marketplace" class="section active">
-            <div id="items" class="items-grid">
-                <div class="loading">Loading items...</div>
-            </div>
+    <div class="wiki-container">
+        <div class="wiki-header">
+            <h1 class="wiki-logo">BWR</h1>
+            <p class="wiki-subtitle">Bobertovo Web Resources</p>
+            <p class="welcome-text">Welcome to BWR - your comprehensive resource hub for the Bobertovo community. Explore our marketplace, discover job opportunities, and contribute to our growing knowledge base.</p>
         </div>
 
-        <div id="jobs" class="section">
-            <div id="job-listings" class="jobs-grid">
-                <div class="loading">Loading job listings...</div>
-            </div>
+        <div class="search-section">
+            <input type="text" id="wikiSearch" class="wiki-search" placeholder="Search BWR Wiki...">
         </div>
 
-        <div id="estate" class="section">
-            <div id="estate-listings" class="estate-grid">
-                <div class="loading">Loading office listings...</div>
-            </div>
+        <div class="menu-button" onclick="toggleMenu()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
         </div>
 
-        <div id="search" class="section">
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Поиск товара...">
-            </div>
-            <div id="searchResults" class="items-grid">
-                <div class="loading">Введите название товара для поиска</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <div class="logo-container">
-            <a href="https://t.me/frtzhvk" class="bwr-logo" title="Contact BWR">
-                <img src="BWR.png" alt="BWR Logo">
-                <span class="tooltip">contact BWR</span>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="marketplace.html" class="menu-item marketplace-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span>Marketplace</span>
+            </a>
+            <a href="marketplace.html#jobs" class="menu-item job-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+                <span>Jobs</span>
+            </a>
+            <a href="marketplace.html#estate" class="menu-item estate-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21V12a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v9"></path>
+                </svg>
+                <span>BWR Estate</span>
             </a>
         </div>
-        <div class="partner-logos">
-            <div class="partner-logo">
-                <img src="BOBB.png" alt="BOBB Logo">
+
+        <div class="wiki-content">
+            <div class="add-article-btn" onclick="openArticleModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Create New Article</span>
             </div>
-            <div class="partner-logo">
-                <img src="COOP.png" alt="COOP Logo">
+
+            <div id="articlesGrid" class="articles-grid">
+                <div class="loading">Loading articles...</div>
+            </div>
+
+            <div id="searchResults" class="articles-grid" style="display: none;">
             </div>
         </div>
     </div>
 
-    <div id="itemModal" class="modal" onclick="closeModalOnOutside(event, 'itemModal')">
+    <!-- Article Creation Modal -->
+    <div id="articleModal" class="modal" onclick="closeModalOnOutside(event, 'articleModal')">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>List Your Item</h2>
-                <button class="close-btn" onclick="closeModal('itemModal')">&times;</button>
+                <h2>Create New Article</h2>
+                <button class="close-btn" onclick="closeModal('articleModal')">&times;</button>
             </div>
-            <form id="itemForm">
+            <form id="articleForm">
                 <div class="form-group">
-                    <label>Name <span class="required">*</span></label>
-                    <input type="text" id="name" required placeholder="Название Товара">
+                    <label>Title <span class="required">*</span></label>
+                    <input type="text" id="articleTitle" required placeholder="Article title">
                 </div>
 
                 <div class="form-group">
-                    <label>Price <span class="required">*</span></label>
-                    <input type="text" id="price" required placeholder="Цена товара">
+                    <label>Short Description <span class="required">*</span></label>
+                    <input type="text" id="articleDesc" required placeholder="Brief description (appears in preview)">
                 </div>
 
                 <div class="form-group">
-                    <label>Image URL <span class="required">*</span></label>
-                    <input type="url" id="image" required placeholder="https://example.com/image.jpg">
+                    <label>Logo Image URL <span class="required">*</span></label>
+                    <input type="url" id="articleLogo" required placeholder="https://example.com/logo.jpg">
                 </div>
 
                 <div class="form-group">
-                    <label>Telegram <span class="required">*</span></label>
-                    <input type="text" id="telegram" required placeholder="@юз продавца">
+                    <label>Tags (up to 3, 2-10 characters each) <span class="required">*</span></label>
+                    <input type="text" id="articleTags" required placeholder="tag1, tag2, tag3" maxlength="50">
+                    <small>Separate tags with commas</small>
                 </div>
 
                 <div class="form-group">
-                    <label>Description</label>
-                    <textarea id="description" placeholder="Oпционально описание.."></textarea>
+                    <label>Subtitle</label>
+                    <input type="text" id="articleSubtitle" placeholder="Optional subtitle for full article page">
                 </div>
+
+                <div id="sectionsContainer">
+                    <div class="section-group" data-section="0">
+                        <div class="section-header">
+                            <h3>Section 1</h3>
+                        </div>
+                        <div class="form-group">
+                            <label>Section Content <span class="required">*</span></label>
+                            <textarea class="section-content" required placeholder="Write your article content here..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Image URLs (up to 2 per section)</label>
+                            <input type="url" class="section-image" placeholder="https://example.com/image1.jpg">
+                            <input type="url" class="section-image" placeholder="https://example.com/image2.jpg">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="add-section-btn" onclick="addSection()">+ Add Another Section</button>
 
                 <div class="form-group">
-                    <label style="display: flex; align-items: center; cursor: pointer;">
-                        <input type="checkbox" id="used" style="width: auto; margin-right: 8px;">
-                        <span>Б/У (Used)</span>
-                    </label>
+                    <label>Library Images (up to 10 URLs, displayed at bottom)</label>
+                    <textarea id="libraryImages" placeholder="https://example.com/img1.jpg&#10;https://example.com/img2.jpg&#10;One URL per line..." rows="4"></textarea>
+                    <small>One URL per line</small>
                 </div>
 
-                <button type="submit" class="submit-btn marketplace-submit">Create Listing</button>
+                <button type="submit" class="submit-btn wiki-submit">Create Article</button>
             </form>
         </div>
     </div>
 
-    <div id="jobModal" class="modal" onclick="closeModalOnOutside(event, 'jobModal')">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Post a Job</h2>
-                <button class="close-btn" onclick="closeModal('jobModal')">&times;</button>
-            </div>
-            <form id="jobForm">
-                <div class="form-group">
-                    <label>Business Name <span class="required">*</span></label>
-                    <input type="text" id="business-name" required placeholder="Name of business">
-                </div>
-
-                <div class="form-group">
-                    <label>Payment <span class="required">*</span></label>
-                    <input type="text" id="payment" required placeholder="e.g., $100 per day">
-                </div>
-
-                <div class="form-group">
-                    <label>Image URL <span class="required">*</span></label>
-                    <input type="url" id="job-image" required placeholder="https://example.com/logo.jpg">
-                </div>
-
-                <div class="form-group">
-                    <label>Telegram <span class="required">*</span></label>
-                    <input type="text" id="job-telegram" required placeholder="@business_contact">
-                </div>
-
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea id="job-description" placeholder="Optional job description..."></textarea>
-                </div>
-
-                <div class="form-group legal-notice">
-                    <p>Публикуя вакансию вы подтверждаете согласие с новым законом. <a href="https://telegra.ph/Zakony-zashchity-prav-potrebitelej-Bobertovo-RP-11-19" target="_blank">Подробнее</a></p>
-                </div>
-
-                <button type="submit" class="submit-btn job-submit">Post Job</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="rentModal" class="modal" onclick="closeModalOnOutside(event, 'rentModal')">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Rent Property</h2>
-                <button class="close-btn" onclick="closeModal('rentModal')">&times;</button>
-            </div>
-            <form id="rentForm">
-                <input type="hidden" id="rent-type">
-                <input type="hidden" id="rent-size">
-                
-                <div class="form-group">
-                    <label>Available Units <span class="required">*</span></label>
-                    <select id="rent-unit-select" required>
-                        </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Duration (Days) <span class="required">*</span></label>
-                    <input type="number" id="rent-days" min="1" value="1" required placeholder="Number of days">
-                </div>
-
-                <div class="form-group">
-                    <p style="font-size: 14px; color: #8b949e;" id="rent-summary"></p>
-                </div>
-
-                <button type="submit" class="submit-btn estate-submit">Proceed to Telegram</button>
-            </form>
+    <!-- Article View Modal -->
+    <div id="viewModal" class="modal" onclick="closeModalOnOutside(event, 'viewModal')">
+        <div class="modal-content article-view-content">
+            <button class="close-btn" onclick="closeModal('viewModal')">&times;</button>
+            <div id="articleViewContent"></div>
         </div>
     </div>
 
     <script>
-        // CONFIGURE THESE
         const GITHUB_USERNAME = 'Forretpw';
         const GITHUB_REPO = 'BWR';
+        let allArticles = [];
+        let sectionCount = 1;
 
-        let allItems = [];
-
-        // Tab switching functionality
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Update active tab
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-
-                // Show corresponding section
-                const sectionId = tab.dataset.section;
-                document.querySelectorAll('.section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                document.getElementById(sectionId).classList.add('active');
-
-                // Update action button logic
-                const actionBtn = document.getElementById('actionBtn');
-                if (sectionId === 'marketplace') {
-                    actionBtn.style.display = 'flex';
-                    actionBtn.className = 'action-btn sell-btn';
-                    actionBtn.onclick = () => openModal('itemModal');
-                } else if (sectionId === 'jobs') {
-                    actionBtn.style.display = 'flex';
-                    actionBtn.className = 'action-btn job-btn';
-                    actionBtn.onclick = () => openModal('jobModal');
-                } else if (sectionId === 'estate') {
-                    // Hide ADD button for Real Estate (Admin only adds via Issues)
-                    actionBtn.style.display = 'none';
-                } else {
-                    actionBtn.style.display = 'none';
-                }
-            });
-        });
+        function toggleMenu() {
+            const menu = document.getElementById('dropdownMenu');
+            menu.classList.toggle('active');
+        }
 
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
@@ -253,292 +163,240 @@
             if (e.target.id === modalId) closeModal(modalId);
         }
 
-        // --- ITEM RENDERING ---
-        function renderItemCard(issue) {
-            const body = issue.body;
-            const name = body.match(/\*\*Name:\*\* (.+)/)?.[1] || 'Unknown';
-            const price = body.match(/\*\*Price:\*\* (.+)/)?.[1] || 'N/A';
-            const image = body.match(/\*\*Image:\*\* (.+)/)?.[1] || '';
-            const telegram = body.match(/\*\*Telegram:\*\* (.+)/)?.[1] || '';
-            const description = body.match(/\*\*Description:\*\*\s*\n(.+)/s)?.[1]?.trim() || '';
-            const isUsed = body.match(/\*\*Condition:\*\* (.+)/)?.[1] === 'Used';
+        function openArticleModal() {
+            openModal('articleModal');
+        }
 
-            return `
-                <div class="item-card">
-                    <img src="${image}" alt="${name}" class="item-image" onerror="this.src='https://via.placeholder.com/300x200/0d1117/8b949e?text=No+Image'">
-                    <div class="item-content">
-                        <div class="condition-badge ${isUsed ? 'condition-used' : 'condition-new'}">
-                            ${isUsed ? 'Б/У' : 'Новый'}
-                        </div>
-                        <div class="item-name">${name}</div>
-                        <div class="item-price">${price}</div>
-                        ${description ? `<div class="item-description">${description}</div>` : ''}
-                        <a href="https://t.me/${telegram.replace('@', '')}" target="_blank" class="contact-btn marketplace-contact">
-                            Contact Seller
-                        </a>
+        function addSection() {
+            const container = document.getElementById('sectionsContainer');
+            sectionCount++;
+            const sectionHtml = `
+                <div class="section-group" data-section="${sectionCount - 1}">
+                    <div class="section-header">
+                        <h3>Section ${sectionCount}</h3>
+                        <button type="button" class="remove-section-btn" onclick="removeSection(this)">Remove</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Section Content <span class="required">*</span></label>
+                        <textarea class="section-content" required placeholder="Write your article content here..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URLs (up to 2 per section)</label>
+                        <input type="url" class="section-image" placeholder="https://example.com/image1.jpg">
+                        <input type="url" class="section-image" placeholder="https://example.com/image2.jpg">
                     </div>
                 </div>
             `;
+            container.insertAdjacentHTML('beforeend', sectionHtml);
         }
 
-        // --- REAL ESTATE LOGIC ---
-        function generateRoomList(type, size, takenString) {
-            const takenRooms = takenString.split(',').map(s => s.trim());
-            let rooms = [];
-            let floors = [];
-            let suffixes = [];
+        function removeSection(btn) {
+            const section = btn.closest('.section-group');
+            section.remove();
+        }
 
-            // Define Rules based on Prompt
-            if (type === 'Office') {
-                floors = [4, 5, 6, 7];
-                if (size === 'Small') suffixes = ['01'];
-                else if (size === 'Medium') suffixes = ['02'];
-                else if (size === 'Large') suffixes = ['03'];
-            } else if (type === 'Apartment') {
-                floors = [2, 3];
-                if (size === 'Small') suffixes = ['02', '03'];
-                else if (size === 'Large') suffixes = ['01', '04'];
+        function validateTags(tagsString) {
+            const tags = tagsString.split(',').map(t => t.trim()).filter(t => t.length > 0);
+            if (tags.length === 0 || tags.length > 3) {
+                alert('Please provide 1-3 tags');
+                return null;
             }
+            for (let tag of tags) {
+                if (tag.length < 2 || tag.length > 10) {
+                    alert(`Tag "${tag}" must be between 2 and 10 characters`);
+                    return null;
+                }
+            }
+            return tags;
+        }
 
-            // Generate Rooms
-            floors.forEach(floor => {
-                suffixes.forEach(suffix => {
-                    const roomNum = `${floor}${suffix}`;
-                    rooms.push({
-                        number: roomNum,
-                        floor: floor,
-                        isTaken: takenRooms.includes(roomNum)
-                    });
-                });
+        document.getElementById('articleForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const title = document.getElementById('articleTitle').value;
+            const desc = document.getElementById('articleDesc').value;
+            const logo = document.getElementById('articleLogo').value;
+            const tagsInput = document.getElementById('articleTags').value;
+            const subtitle = document.getElementById('articleSubtitle').value;
+            const libraryImages = document.getElementById('libraryImages').value;
+
+            const tags = validateTags(tagsInput);
+            if (!tags) return;
+
+            const sections = [];
+            document.querySelectorAll('.section-group').forEach(section => {
+                const content = section.querySelector('.section-content').value;
+                const images = Array.from(section.querySelectorAll('.section-image'))
+                    .map(input => input.value)
+                    .filter(url => url.length > 0);
+                
+                if (content.trim()) {
+                    sections.push({ content, images });
+                }
             });
 
-            return rooms;
-        }
+            const library = libraryImages.split('\n')
+                .map(url => url.trim())
+                .filter(url => url.length > 0)
+                .slice(0, 10);
 
-        function openRentModal(type, size, price, roomsJson) {
-            const rooms = JSON.parse(decodeURIComponent(roomsJson));
-            const availableRooms = rooms.filter(r => !r.isTaken);
+            let issueBody = `**Title:** ${title}\n`;
+            issueBody += `**Description:** ${desc}\n`;
+            issueBody += `**Logo:** ${logo}\n`;
+            issueBody += `**Tags:** ${tags.join(', ')}\n`;
+            if (subtitle) issueBody += `**Subtitle:** ${subtitle}\n`;
             
-            const select = document.getElementById('rent-unit-select');
-            select.innerHTML = '';
+            issueBody += `\n**Sections:**\n`;
+            sections.forEach((section, idx) => {
+                issueBody += `\n--- Section ${idx + 1} ---\n`;
+                issueBody += `${section.content}\n`;
+                if (section.images.length > 0) {
+                    issueBody += `**Images:** ${section.images.join(', ')}\n`;
+                }
+            });
 
-            if (availableRooms.length === 0) {
-                const option = document.createElement('option');
-                option.text = "No units available";
-                select.add(option);
-                select.disabled = true;
-            } else {
-                select.disabled = false;
-                availableRooms.forEach(r => {
-                    const option = document.createElement('option');
-                    option.value = JSON.stringify(r); // Store whole obj
-                    option.text = `Floor ${r.floor} - Unit ${r.number}`;
-                    select.add(option);
-                });
+            if (library.length > 0) {
+                issueBody += `\n**Library:**\n${library.join('\n')}`;
             }
 
-            document.getElementById('rent-type').value = type;
-            document.getElementById('rent-size').value = size;
-            document.getElementById('rent-summary').innerText = `Price: ${price} per day`;
-            
-            openModal('rentModal');
-        }
-
-        // Handle Rent Form Submit
-        document.getElementById('rentForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const select = document.getElementById('rent-unit-select');
-            if (select.disabled) return;
-
-            const roomData = JSON.parse(select.value); // {number: "403", floor: 4, ...}
-            const days = document.getElementById('rent-days').value;
-            const type = document.getElementById('rent-type').value; // Office/Apartment
-            const size = document.getElementById('rent-size').value; // Small/Large
-
-            // Construct Message
-            // "Здравствуйте! хочу арендовать офис размера (office size). на (days) день/ня/ней. На (floor number) под номером (number)"
-            
-            // Translation mapping for cleaner Russian
-            const typeRu = type === 'Office' ? 'офис' : 'апартаменты';
-            const sizeRu = size === 'Small' ? 'маленького' : (size === 'Medium' ? 'среднего' : 'большого');
-            
-            const message = `Здравствуйте! Хочу арендовать ${typeRu} ${sizeRu} размера. На ${days} день/дня/дней. На ${roomData.floor} этаже под номером ${roomData.number}.`;
-            
-            const telegramUrl = `https://t.me/frtzhvk?text=${encodeURIComponent(message)}`;
-            window.open(telegramUrl, '_blank');
-            closeModal('rentModal');
+            const issueUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(issueBody)}&labels=BWR-WIKI`;
+            window.open(issueUrl, '_blank');
+            closeModal('articleModal');
         });
 
-        function renderEstateCard(issue) {
+        function renderArticleCard(issue) {
             const body = issue.body;
-            const type = body.match(/\*\*Type:\*\* (.+)/)?.[1] || 'Office';
-            const size = body.match(/\*\*Size:\*\* (.+)/)?.[1] || 'Small';
-            const price = body.match(/\*\*Price:\*\* (.+)/)?.[1] || '0';
-            const image = body.match(/\*\*Image:\*\* (.+)/)?.[1] || '';
-            const taken = body.match(/\*\*Taken:\*\* (.*)/)?.[1] || '';
-            const description = body.match(/\*\*Description:\*\*\s*\n(.+)/s)?.[1]?.trim() || '';
-
-            const rooms = generateRoomList(type, size, taken);
-            const roomsJson = encodeURIComponent(JSON.stringify(rooms));
-
-            const roomGridHtml = rooms.map(r => `
-                <div class="room-item ${r.isTaken ? 'room-taken' : 'room-available'}">
-                    ${r.number}
-                    <span class="room-floor">${r.floor} fl</span>
-                </div>
-            `).join('');
+            const title = body.match(/\*\*Title:\*\* (.+)/)?.[1] || 'Untitled';
+            const desc = body.match(/\*\*Description:\*\* (.+)/)?.[1] || '';
+            const logo = body.match(/\*\*Logo:\*\* (.+)/)?.[1] || '';
+            const tagsMatch = body.match(/\*\*Tags:\*\* (.+)/)?.[1] || '';
+            const tags = tagsMatch.split(',').map(t => t.trim());
 
             return `
-                <div class="estate-card">
-                    <img src="${image}" alt="${type} ${size}" class="estate-image" onerror="this.src='https://via.placeholder.com/300x200/0d1117/8b949e?text=BWR+Estate'">
-                    <div class="estate-content">
-                        <div class="estate-badge">${type} - ${size}</div>
-                        <div class="estate-name">BWR Centre ${type}</div>
-                        <div class="estate-price">${price} / day</div>
-                        
-                        <div class="rooms-grid">
-                            ${roomGridHtml}
+                <div class="article-card" onclick="viewArticle(${issue.number})">
+                    <img src="${logo}" alt="${title}" class="article-logo" onerror="this.src='https://via.placeholder.com/80/89CFF0/F187B7?text=BWR'">
+                    <div class="article-info">
+                        <h3 class="article-title">${title}</h3>
+                        <p class="article-description">${desc}</p>
+                        <div class="article-tags">
+                            ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                         </div>
-
-                        ${description ? `<div class="estate-description">${description}</div>` : ''}
-                        
-                        <button onclick="openRentModal('${type}', '${size}', '${price}', '${roomsJson}')" class="contact-btn estate-contact">
-                            Check Availability & Rent
-                        </button>
                     </div>
                 </div>
             `;
         }
 
-        // --- LOADING FUNCTIONS ---
+        function viewArticle(issueNumber) {
+            const article = allArticles.find(a => a.number === issueNumber);
+            if (!article) return;
 
-        async function loadItems() {
+            const body = article.body;
+            const title = body.match(/\*\*Title:\*\* (.+)/)?.[1] || 'Untitled';
+            const subtitle = body.match(/\*\*Subtitle:\*\* (.+)/)?.[1] || '';
+            
+            const sectionsMatch = body.match(/\*\*Sections:\*\*\n([\s\S]*?)(?:\n\*\*Library:\*\*|$)/);
+            const libraryMatch = body.match(/\*\*Library:\*\*\n([\s\S]*?)$/);
+
+            let contentHtml = `<h1 class="view-title">${title}</h1>`;
+            if (subtitle) {
+                contentHtml += `<p class="view-subtitle">${subtitle}</p>`;
+            }
+
+            if (sectionsMatch) {
+                const sectionsText = sectionsMatch[1];
+                const sectionParts = sectionsText.split(/--- Section \d+ ---/).filter(s => s.trim());
+                
+                sectionParts.forEach(section => {
+                    const imageMatch = section.match(/\*\*Images:\*\* (.+)/);
+                    const content = section.replace(/\*\*Images:\*\* .+/, '').trim();
+                    
+                    contentHtml += `<div class="article-section">${content.replace(/\n/g, '<br>')}</div>`;
+                    
+                    if (imageMatch) {
+                        const images = imageMatch[1].split(',').map(url => url.trim());
+                        images.forEach(img => {
+                            contentHtml += `<img src="${img}" class="section-image" alt="Section image">`;
+                        });
+                    }
+                });
+            }
+
+            if (libraryMatch) {
+                const libraryUrls = libraryMatch[1].trim().split('\n').filter(url => url.trim());
+                if (libraryUrls.length > 0) {
+                    contentHtml += `<div class="library-section"><h2>Library</h2><div class="library-grid">`;
+                    libraryUrls.forEach(url => {
+                        contentHtml += `<img src="${url}" class="library-image" alt="Library image">`;
+                    });
+                    contentHtml += `</div></div>`;
+                }
+            }
+
+            document.getElementById('articleViewContent').innerHTML = contentHtml;
+            openModal('viewModal');
+        }
+
+        async function loadArticles() {
             try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/issues?labels=marketplace-item&state=open`);
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/issues?labels=BWR-WIKI&state=open`);
                 const issues = await response.json();
-                allItems = issues;
-                const container = document.getElementById('items');
+                allArticles = issues;
+                const container = document.getElementById('articlesGrid');
+                
                 if (issues.length === 0) {
-                    container.innerHTML = '<div class="loading">No items yet. Click "+" to list the first one!</div>';
+                    container.innerHTML = '<div class="loading">No articles yet. Create the first one!</div>';
                     return;
                 }
-                container.innerHTML = issues.map(renderItemCard).join('');
+                
+                container.innerHTML = issues.map(renderArticleCard).join('');
             } catch (error) {
-                document.getElementById('items').innerHTML = '<div class="loading">Error loading items. Check your GitHub configuration.</div>';
+                document.getElementById('articlesGrid').innerHTML = '<div class="loading">Error loading articles.</div>';
             }
         }
 
-        async function loadJobs() {
-            try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/issues?labels=BWR-JOB&state=open`);
-                const issues = await response.json();
-                const container = document.getElementById('job-listings');
-                if (issues.length === 0) {
-                    container.innerHTML = '<div class="loading">No job listings yet. Click "+" to create the first one!</div>';
-                    return;
-                }
-                container.innerHTML = issues.map(issue => {
-                    const body = issue.body;
-                    const business = body.match(/\*\*Business:\*\* (.+)/)?.[1] || 'Unknown Business';
-                    const payment = body.match(/\*\*Payment:\*\* (.+)/)?.[1] || 'Negotiable';
-                    const image = body.match(/\*\*Image:\*\* (.+)/)?.[1] || '';
-                    const telegram = body.match(/\*\*Telegram:\*\* (.+)/)?.[1] || '';
-                    const description = body.match(/\*\*Description:\*\*\s*\n(.+)/s)?.[1]?.trim() || '';
-
-                    return `
-                        <div class="job-card">
-                            <img src="${image}" alt="${business}" class="job-image" onerror="this.src='https://via.placeholder.com/300x200/0d1117/8b949e?text=No+Logo'">
-                            <div class="job-content">
-                                <div class="payment-badge">${payment}</div>
-                                <div class="job-name">${business}</div>
-                                <div class="job-payment">Job Opportunity</div>
-                                ${description ? `<div class="job-description">${description}</div>` : ''}
-                                <a href="https://t.me/${telegram.replace('@', '')}" target="_blank" class="contact-btn job-contact">
-                                    Contact Business
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            } catch (error) {
-                document.getElementById('job-listings').innerHTML = '<div class="loading">Error loading jobs. Check your GitHub configuration.</div>';
-            }
-        }
-
-        async function loadEstate() {
-            try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/issues?labels=BWR-ESTATE&state=open`);
-                const issues = await response.json();
-                const container = document.getElementById('estate-listings');
-
-                if (issues.length === 0) {
-                    container.innerHTML = '<div class="loading">No properties listed yet.</div>';
-                    return;
-                }
-
-                container.innerHTML = issues.map(renderEstateCard).join('');
-            } catch (error) {
-                document.getElementById('estate-listings').innerHTML = '<div class="loading">Error loading estate listings.</div>';
-            }
-        }
-
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('input', (e) => {
+        document.getElementById('wikiSearch').addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
             const resultsContainer = document.getElementById('searchResults');
+            const articlesGrid = document.getElementById('articlesGrid');
 
             if (!query) {
-                resultsContainer.innerHTML = '<div class="loading">Введите название товара для поиска</div>';
+                resultsContainer.style.display = 'none';
+                articlesGrid.style.display = 'grid';
                 return;
             }
 
-            const filtered = allItems.filter(item => {
-                const body = item.body;
-                const name = body.match(/\*\*Name:\*\* (.+)/)?.[1] || '';
-                const description = body.match(/\*\*Description:\*\*\s*\n(.+)/s)?.[1] || '';
-                return name.toLowerCase().includes(query) || description.toLowerCase().includes(query);
+            const filtered = allArticles.filter(article => {
+                const body = article.body;
+                const title = body.match(/\*\*Title:\*\* (.+)/)?.[1] || '';
+                const desc = body.match(/\*\*Description:\*\* (.+)/)?.[1] || '';
+                const tags = body.match(/\*\*Tags:\*\* (.+)/)?.[1] || '';
+                
+                return title.toLowerCase().includes(query) || 
+                       desc.toLowerCase().includes(query) || 
+                       tags.toLowerCase().includes(query);
             });
 
+            articlesGrid.style.display = 'none';
+            resultsContainer.style.display = 'grid';
+            
             if (filtered.length === 0) {
-                resultsContainer.innerHTML = '<div class="loading">Товары не найдены</div>';
+                resultsContainer.innerHTML = '<div class="loading">No articles found</div>';
                 return;
             }
-            resultsContainer.innerHTML = filtered.map(renderItemCard).join('');
+            
+            resultsContainer.innerHTML = filtered.map(renderArticleCard).join('');
         });
 
-        document.getElementById('itemForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const price = document.getElementById('price').value;
-            const image = document.getElementById('image').value;
-            const telegram = document.getElementById('telegram').value;
-            const description = document.getElementById('description').value;
-            const isUsed = document.getElementById('used').checked;
-
-            const issueBody = `**Name:** ${name}\n**Price:** ${price}\n**Image:** ${image}\n**Telegram:** ${telegram}\n**Condition:** ${isUsed ? 'Used' : 'New'}\n**Description:**\n${description || 'No description'}`;
-            const issueUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(name)}&body=${encodeURIComponent(issueBody)}&labels=marketplace-item`;
-            window.open(issueUrl, '_blank');
-            closeModal('itemModal');
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('dropdownMenu');
+            const menuBtn = document.querySelector('.menu-button');
+            if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+                menu.classList.remove('active');
+            }
         });
 
-        document.getElementById('jobForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const business = document.getElementById('business-name').value;
-            const payment = document.getElementById('payment').value;
-            const image = document.getElementById('job-image').value;
-            const telegram = document.getElementById('job-telegram').value;
-            const description = document.getElementById('job-description').value;
-
-            const issueBody = `**Business:** ${business}\n**Payment:** ${payment}\n**Image:** ${image}\n**Telegram:** ${telegram}\n**Description:**\n${description || 'No description'}`;
-            const issueUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(business)}&body=${encodeURIComponent(issueBody)}&labels=BWR-JOB`;
-            window.open(issueUrl, '_blank');
-            closeModal('jobModal');
-        });
-
-        // Initialize
-        loadItems();
-        loadJobs();
-        loadEstate();
+        loadArticles();
     </script>
 </body>
 </html>
