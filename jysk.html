@@ -1,214 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JYSK Fillial at Bobertovo (JYSK.BV)</title>
-    <style>
-        
-        :root {
-            --color-background-dark: #f0f2f5; /* Light, clean background */
-            --color-background-card: #ffffff; /* Pure white for cards */
-            --color-primary: #005aa3; /* Deep blue, JYSK-inspired, for accents */
-            --color-secondary: #ffc400; /* Yellow for highlights/prices */
-            --color-text-dark: #333333; /* Dark text for readability */
-            --color-text-light: #6c757d; /* Lighter grey for secondary text */
-            --color-border: #e0e0e0; /* Subtle border color */
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            font-family: var(--font-main);
-            background-color: var(--color-background-dark);
-            color: var(--color-text-dark);
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-
-        .jysk-container {
-            max-width: 1200px; /* Wider container for a modern layout */
-            margin: 0 auto;
-            background-color: var(--color-background-card);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft, modern shadow */
-        }
-
-        h1 {
-            color: var(--color-primary);
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        h2 {
-            color: var(--color-text-dark);
-            font-size: 1.8em;
-            border-bottom: 3px solid var(--color-primary);
-            padding-bottom: 10px;
-            margin-top: 40px;
-            margin-bottom: 25px;
-            display: inline-block; /* Makes the border only as wide as the text */
-        }
-
-        .address {
-            font-style: normal;
-            margin-bottom: 30px;
-            color: var(--color-text-light);
-            font-size: 1.1em;
-        }
-        
-        .description {
-            margin-bottom: 40px;
-            font-size: 1.1em;
-            color: var(--color-text-dark);
-            border-left: 4px solid var(--color-secondary);
-            padding-left: 15px;
-        }
-
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        /* Product Card */
-        .product-card {
-            background-color: var(--color-background-card);
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden; /* Important for shadow and border radius */
-            
-            /* Subtle Hover Animation */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px); /* Lift effect */
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
-            border-color: var(--color-primary); /* Highlight border on hover */
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 200px; /* Increased height for better product display */
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            background-color: #f8f9fa; 
-        }
-
-        .product-name {
-            font-weight: 600;
-            font-size: 1.25em;
-            color: var(--color-text-dark);
-            margin-bottom: 8px;
-        }
-        
-        .product-category-icon {
-            font-size: 1.5em;
-            margin-right: 10px;
-            color: var(--color-primary);
-        }
-
-        .product-price {
-            color: var(--color-primary);
-            font-size: 1.5em;
-            font-weight: 700;
-            margin-top: 10px;
-            /* Highlight sale price or special price with secondary color */
-            border-top: 1px solid var(--color-border);
-            padding-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .product-price::before {
-            content: "Price: ";
-            font-size: 0.7em;
-            font-weight: 400;
-            color: var(--color-text-light);
-        }
-        
-        .product-price.sale {
-            color: var(--color-secondary);
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JYSK Fillial at Bobertovo (JYSK.BV)</title>
+    <style>
+        /* Basic styling to make it look decent inside the iframe */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #161b22; /* Dark background matching BWR style */
+            color: #c9d1d9;
+            margin: 0;
+            padding: 20px;
+        }
+        .jysk-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #0d1117;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2 {
+            color: #58a6ff;
+            border-bottom: 2px solid #30363d;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .address {
+            font-style: italic;
+            margin-bottom: 25px;
+            color: #8b949e;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: #1f2730;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: #21262d; /* Placeholder background */
+        }
+        .product-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        .product-price {
+            color: #a371f7;
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="jysk-container">
-        <h1>JYSK Fillial at Bobertovo (JYSK.BV)</h1>
-        <p class="address">📍 **15 часть Ocean ut адрес**</p>
-        <p class="description">JYSK Bobertovo - Scandinavian style and quality products for your home and office. Explore our carefully selected collection of modern and functional furniture and decor.</p>
+    <div class="jysk-container">
+        <h1>JYSK Fillial at Bobertovo (JYSK.BV)</h1>
+        <p class="address">📍 Address: 15 часть Ocean ut адрес</p>
+        <p>JYSK Bobertovo - Scandinavian style and quality products for your home and office</p>
 
-        <h2><span class="product-category-icon">🛋️</span> Furniture</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://i.postimg.cc/25pXHh3y/image.png" alt="Modern Scandinavian Dining Table">
-                <div class="product-name">Dining Table</div>
-                <div class="product-price">35 Euro</div>
-            </div>
-            <div class="product-card">
-                <img src="https://i.postimg.cc/25pXHh3y/image.png" alt="Ergonomic Office Chair">
-                <div class="product-name">Chair</div>
-                <div class="product-price">15 Euro</div>
-            </div>
-            <div class="product-card">
-                <img src="https://i.postimg.cc/bNwXbx2Y/image.png" alt="Comfort Dual Bed">
-                <div class="product-name">Dual Bed</div>
-                <div class="product-price sale">65 Euro</div>
-            </div>
-            <div class="product-card">
-                <img src="https://i.postimg.cc/vTDz8ZDj/image.png" alt="Wooden Barrel Storage">
-                <div class="product-name">Decorative Barrel</div>
-                <div class="product-price">15 Euro</div>
-            </div>
-            <div class="product-card">
-                <img src="https://i.postimg.cc/vTDz8ZDj/image.png" alt="Minimalist Book Shelf">
-                <div class="product-name">Book Shelf</div>
-                <div class="product-price">20 Euro</div>
-            </div>
-        </div>
+        <h2>Furniture 🛋️</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://i.postimg.cc/25pXHh3y/image.png" alt="Table" title="Replace this text with the actual image link">
+                <div class="product-name">Table</div>
+                <div class="product-price">35 Euro</div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.postimg.cc/25pXHh3y/image.png" alt="Chair" title="Replace this text with the actual image link">
+                <div class="product-name">Chair</div>
+                <div class="product-price">15 Euro</div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.postimg.cc/bNwXbx2Y/image.png" alt="Dual Bed" title="Replace this text with the actual image link">
+                <div class="product-name">Dual Bed</div>
+                <div class="product-price">65 Euro</div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.postimg.cc/vTDz8ZDj/image.png" alt="Barrel" title="Replace this text with the actual image link">
+                <div class="product-name">Barrel</div>
+                <div class="product-price">15 Euro</div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.postimg.cc/vTDz8ZDj/image.png" alt="Book Shelf" title="Replace this text with the actual image link">
+                <div class="product-name">Book Shelf</div>
+                <div class="product-price">20 Euro</div>
+            </div>
+        </div>
 
-        <h2><span class="product-category-icon">✨</span> Decorative Items</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://i.postimg.cc/hjt8Mt87/image.png" alt="Premium Artificial Christmas Tree">
-                <div class="product-name">Christmas Tree</div>
-                <div class="product-price sale">99 Euro</div>
-            </div>
-            <div class="product-card">
-                <img src="https://i.postimg.cc/25pXHh3y/image.png" alt="Aromatic Soy Candle">
-                <div class="product-name">Candle</div>
-                <div class="product-price">5 Euro</div>
-            </div>
-            <div class="product-card">
-                <img src="https://i.postimg.cc/hvJLWZ5L/image.png" alt="Various Wall Pictures">
-                <div class="product-name">Picture (Varies)</div>
-                <div class="product-price">9 - 14 Euro</div>
-            </div>
-        </div>
+        <h2>Decorative Items ✨</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://i.postimg.cc/hjt8Mt87/image.png" alt="Christmas Tree" title="Replace this text with the actual image link">
+                <div class="product-name">Christmas Tree</div>
+                <div class="product-price">99 Euro</div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.postimg.cc/25pXHh3y/image.png" alt="Candle" title="Replace this text with the actual image link">
+                <div class="product-name">Candle</div>
+                <div class="product-price">5 Euro</div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.postimg.cc/hvJLWZ5L/image.png" alt="Picture" title="Replace this text with the actual image link">
+                <div class="product-name">Picture (Varies)</div>
+                <div class="product-price">9 - 14 Euro</div>
+            </div>
+        </div>
 
-        <h2><span class="product-category-icon">🔌</span> Electronics</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://i.postimg.cc/PJq6LMVF/image.png" alt="LG French Door Refrigerator">
-                <div class="product-name">Lg French Door Refrigerator</div>
-                <div class="product-price sale">259 Euro</div>
-            </div>
-            <div class="product-card">
-                <img src="https://i.postimg.cc/PJq6LMVF/image.png" alt="Bluetooth Soundplayer">
-                <div class="product-name">Soundplayer</div>
-                <div class="product-price">20 Euro</div>
-            </div>
-        </div>
-    </div>
+        <h2>Electronics 🔌</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://i.postimg.cc/PJq6LMVF/image.png" alt="LG French Door Refrigerator" title="Replace this text with the actual image link">
+                <div class="product-name">Lg French Door Refrigerator</div>
+                <div class="product-price">259 Euro</div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.postimg.cc/PJq6LMVF/image.png" alt="Soundplayer" title="Replace this text with the actual image link">
+                <div class="product-name">Soundplayer</div>
+                <div class="product-price">20 Euro</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
