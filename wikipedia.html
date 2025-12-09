@@ -3,37 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BWR Wikipedia</title>
+    <title>BWR Encyclopedia</title>
     <link rel="stylesheet" href="wiki-style.css">
 </head>
 <body>
     <div class="header">
         <div class="header-left">
             <div>
-                <div class="wiki-logo">BWR Wikipedia</div>
-                <div class="wiki-subtitle">The Free Encyclopedia</div>
+                <div class="wiki-logo">BWR Encyclopedia</div>
+                <div class="wiki-subtitle">Knowledge Base</div>
             </div>
         </div>
         <button class="add-article-btn" onclick="openModal('articleModal')">+ New Article</button>
     </div>
 
     <div class="container">
-        <!-- Articles List Section -->
         <section id="articles-list" class="section active">
             <div id="articles-grid" class="articles-grid">
                 <div class="loading">Loading articles...</div>
             </div>
         </section>
 
-        <!-- Article View Section -->
         <section id="article-view" class="section">
             <div class="article-view" id="article-view-content">
-                <!-- Article content will be loaded here -->
-            </div>
+                </div>
         </section>
     </div>
 
-    <!-- Add Article Modal -->
     <div id="articleModal" class="modal" onclick="closeModalOnOutside(event, 'articleModal')">
         <div class="modal-content">
             <div class="modal-header">
@@ -43,7 +39,7 @@
             <form id="articleForm">
                 <div class="form-group">
                     <label>Article URL Slug <span class="required">*</span></label>
-                    <input type="text" id="article-slug" required placeholder="historybook">
+                    <input type="text" id="article-slug" required placeholder="history-of-bobertovo">
                     <div class="form-help">Lowercase, no spaces (will be used in URL)</div>
                 </div>
 
@@ -169,7 +165,7 @@
 
             return `
                 <div class="article-card" onclick="openArticle('${slug}')">
-                    <img src="${thumbnail}" alt="${title}" class="article-thumbnail" onerror="this.src='https://via.placeholder.com/280x180/f8f9fa/54595d?text=No+Image'">
+                    <img src="${thumbnail}" alt="${title}" class="article-thumbnail" onerror="this.src='https://via.placeholder.com/280x180/eef2f6/54595d?text=No+Image'">
                     <div class="article-card-content">
                         <div class="article-card-title">${title}</div>
                         <div class="article-card-subtitle">${subtitle}</div>
@@ -220,15 +216,21 @@
             const tagsStr = body.match(/\*\*Tags:\*\* (.+)/)?.[1] || '';
             const tags = tagsStr.split(',').map(t => t.trim()).filter(t => t);
             
+            // --- ИСПРАВЛЕНИЕ: ПАРСИНГ СЕКЦИЙ ---
             const sectionsMatch = body.match(/\*\*Sections:\*\*\s*\n([\s\S]*?)(?=\*\*ContentImages:|$)/);
             const sectionsStr = sectionsMatch ? sectionsMatch[1].trim() : '';
             const sections = [];
             
             if (sectionsStr) {
-                const sectionBlocks = sectionsStr.split(/---SECTION---/);
+                // Разделяем по ---SECTION--- и удаляем пустые начальные элементы
+                const sectionBlocks = sectionsStr.split(/---SECTION---/).filter(Boolean); 
+                
                 sectionBlocks.forEach(block => {
-                    const titleMatch = block.match(/Title: (.+)/);
-                    const contentMatch = block.match(/Content: ([\s\S]+)/);
+                    // Используем нежадный поиск для Title (Title: ...\n)
+                    const titleMatch = block.match(/Title: (.+?)\n/);
+                    // Используем [\s\S]+ для Content, чтобы захватить несколько строк
+                    const contentMatch = block.match(/Content: ([\s\S]+)/); 
+                    
                     if (titleMatch && contentMatch) {
                         sections.push({
                             title: titleMatch[1].trim(),
@@ -237,13 +239,17 @@
                     }
                 });
             }
+            // --- КОНЕЦ ИСПРАВЛЕНИЯ ---
 
             const contentImages = [];
-            const contentImg1 = body.match(/\*\*ContentImages:\*\*\s*\n(.+)/)?.[1];
-            const contentImg2 = body.match(/\*\*ContentImages:\*\*\s*\n.+\n(.+)/)?.[1];
-            if (contentImg1 && contentImg1.startsWith('http')) contentImages.push(contentImg1);
-            if (contentImg2 && contentImg2.startsWith('http')) contentImages.push(contentImg2);
-
+            // Ищем до 2 Content Images
+            const contentImagesMatch = body.match(/\*\*ContentImages:\*\*\s*\n([\s\S]*?)(?=\*\*LibraryImages:|$)/);
+            if (contentImagesMatch) {
+                const imgUrls = contentImagesMatch[1].trim().split('\n').map(url => url.trim()).filter(url => url.startsWith('http'));
+                if (imgUrls[0]) contentImages.push(imgUrls[0]);
+                if (imgUrls[1]) contentImages.push(imgUrls[1]);
+            }
+            
             const libImagesMatch = body.match(/\*\*LibraryImages:\*\*\s*\n([\s\S]*?)$/);
             const libImagesStr = libImagesMatch ? libImagesMatch[1].trim() : '';
             const libraryImages = libImagesStr.split('\n').map(url => url.trim()).filter(url => url.startsWith('http'));
@@ -270,11 +276,12 @@
                     </div>
                 `;
 
+                // Вставляем Content Images между секциями (после первой и второй)
                 if (index === 0 && contentImages[0]) {
-                    contentHtml += `<img src="${contentImages[0]}" alt="Content image" class="article-image">`;
+                    contentHtml += `<img src="${contentImages[0]}" alt="Content image 1" class="article-image">`;
                 }
                 if (index === 1 && contentImages[1]) {
-                    contentHtml += `<img src="${contentImages[1]}" alt="Content image" class="article-image">`;
+                    contentHtml += `<img src="${contentImages[1]}" alt="Content image 2" class="article-image">`;
                 }
             });
 
@@ -283,9 +290,9 @@
             if (libraryImages.length > 0) {
                 contentHtml += `
                     <div class="library-section">
-                        <h2 class="library-title">Library</h2>
+                        <h2 class="library-title">Gallery</h2>
                         <div class="library-grid">
-                            ${libraryImages.map(img => `<img src="${img}" alt="Library image" class="library-image">`).join('')}
+                            ${libraryImages.map(img => `<img src="${img}" alt="Gallery image" class="library-image">`).join('')}
                         </div>
                     </div>
                 `;
@@ -299,7 +306,7 @@
         document.getElementById('articleForm').addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const slug = document.getElementById('article-slug').value.toLowerCase().replace(/\s+/g, '');
+            const slug = document.getElementById('article-slug').value.toLowerCase().replace(/\s+/g, '-'); // slug adjustment
             const title = document.getElementById('article-title').value;
             const subtitle = document.getElementById('article-subtitle').value;
             const thumbnail = document.getElementById('article-thumbnail').value;
@@ -315,7 +322,7 @@
                 const sectionTitle = el.querySelector('.section-title').value.trim();
                 const sectionContent = el.querySelector('.section-content').value.trim();
                 if (sectionTitle && sectionContent) {
-                    sectionsStr += `---SECTION---\nTitle: ${sectionTitle}\nContent: ${sectionContent}\n`;
+                    sectionsStr += `---SECTION---\nTitle: ${sectionTitle}\nContent: ${sectionContent}\n\n`;
                 }
             });
 
@@ -343,7 +350,8 @@ ${contentImagesStr}
 **LibraryImages:**
 ${libImages.join('\n')}`;
 
-            const issueUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(issueBody)}&labels=BWR-WIKI`;
+            const issueTitle = `[WIKI] ${title}`;
+            const issueUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}&labels=BWR-WIKI`;
             window.open(issueUrl, '_blank');
             closeModal('articleModal');
         });
