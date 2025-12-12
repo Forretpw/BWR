@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iStyle Bobertovo</title>
+    <style>
+        /* CSS Variables - Minimalist Dark Theme */
+        :root {
+            --color-background: #000000; /* True Black */
+            --color-surface: #1c1c1c; /* Dark Gray for secondary surfaces */
+            --color-text-light: #f5f5f7; /* Near White (Apple text color) */
+            --color-text-muted: #86868b; /* Apple gray for secondary text */
+            --color-accent-blue: #0071e3; /* Classic Apple Blue for links/buttons */
+            --color-separator: #333333; /* Subtle separators */
+            --font-family-primary: 'SF Pro Display', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: var(--font-family-primary);
+            background-color: var(--color-background);
+            color: var(--color-text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        /* Utility classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Navigation (Apple Style) */
+        .header {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--color-separator);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 44px; /* Standard Apple height */
+        }
+
+        .nav a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.8em;
+            margin: 0 20px;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--color-text-light);
+        }
+        
+        .logo-icon {
+            font-size: 1.2em;
+            color: var(--color-text-light);
+            margin: 0 40px;
+            font-weight: 600;
+        }
+
+        /* Hero / Promo Section */
+        .promo-section {
+            text-align: center;
+            padding: 100px 0;
+            border-bottom: 1px solid var(--color-separator);
+        }
+
+        .promo-section h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .promo-section p {
+            font-size: 1.5em;
+            color: var(--color-text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* Product Grid Section */
+        .product-grid {
+            padding: 80px 0;
+        }
+
+        .grid-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .grid-header h2 {
+            font-size: 2.8em;
+            font-weight: 600;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background-color: var(--color-background); /* Black background */
+            text-align: center;
+            padding: 20px;
+            border: 1px solid var(--color-separator);
+            border-radius: 12px;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 0 30px rgba(0, 113, 227, 0.2); /* Subtle blue glow on hover */
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: contain; /* Keep aspect ratio inside the box */
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--color-text-light);
+            margin: 10px 0 5px 0;
+        }
+
+        .product-card .price {
+            font-size: 1.2em;
+            color: var(--color-text-muted);
+            margin-bottom: 20px;
+        }
+
+        .buy-button {
+            background-color: var(--color-accent-blue);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 20px; /* Pill shape */
+            transition: background-color 0.3s, opacity 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .buy-button:hover {
+            background-color: #0088ff; /* Slightly lighter blue */
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--color-separator);
+            font-size: 0.85em;
+            color: var(--color-text-muted);
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav container">
+            <a href="#products">Mac</a>
+            <a href="#products">iPhone</a>
+            <a href="#products">TV</a>
+            <span class="logo-icon">iStyle Bobertovo</span>
+            <a href="#products">Поддержка</a>
+            <a href="#products">Корзина</a>
+        </div>
+    </header>
+
+    <section class="promo-section">
+        <div class="container">
+            <h1>iStyle Bobertovo.</h1>
+            <p>Всё здесь.</p>
+            <a href="#products" class="buy-button">Начать покупки</a>
+        </div>
+    </section>
+
+    <section id="products" class="product-grid">
+        <div class="container">
+            <div class="grid-header">
+                <h2>Товары в наличии</h2>
+            </div>
+            
+            <div class="products">
+                
+                <div class="product-card">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-blue?wid=512&hei=512&fmt=jpeg&qlt=90&.v=1692925920253" alt="iPhone 15" class="product-image">
+                    <div class="product-info">
+                        <h3 data-product-name="iPhone 15">iPhone 15</h3>
+                        <p class="price">449€</p>
+                        <button class="buy-button" data-product-name="iPhone 15">Купить</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/imac-finish-select-202310?wid=512&hei=512&fmt=jpeg&qlt=90&.v=1697230485458" alt="iMac M4" class="product-image">
+                    <div class="product-info">
+                        <h3 data-product-name="iMac M4">iMac M4</h3>
+                        <p class="price">999€</p>
+                        <button class="buy-button" data-product-name="iMac M4">Купить</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-pro-14-16-finish-select-202310?wid=512&hei=512&fmt=jpeg&qlt=90&.v=1697228807753" alt="MacBook Pro M4" class="product-image">
+                    <div class="product-info">
+                        <h3 data-product-name="MacBook Pro M4">MacBook Pro M4</h3>
+                        <p class="price">599€</p>
+                        <button class="buy-button" data-product-name="MacBook Pro M4">Купить</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/apple-tv-4k-hero-202210?wid=512&hei=512&fmt=jpeg&qlt=90&.v=1664402685718" alt="Apple TV Gen 3" class="product-image">
+                    <div class="product-info">
+                        <h3 data-product-name="Apple TV Gen 3">Apple TV Gen 3</h3>
+                        <p class="price">199€</p>
+                        <button class="buy-button" data-product-name="Apple TV Gen 3">Купить</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>iStyle Bobertovo</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buyButtons = document.querySelectorAll('.buy-button');
+            const telegramUsername = 'thebaskov'; // ID Telegram, куда отправлять сообщение
+
+            buyButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productName = event.target.getAttribute('data-product-name');
+                    
+                    if (productName) {
+                        const message = `Здравствуйте. Хочу купить ${productName}`;
+
+                        // Кодируем сообщение для URL
+                        const encodedMessage = encodeURIComponent(message);
+
+                        // Формируем ссылку на Telegram
+                        const telegramUrl = `https://t.me/${telegramUsername}?text=${encodedMessage}`;
+
+                        // Открываем ссылку в новом окне/вкладке
+                        window.open(telegramUrl, '_blank');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
